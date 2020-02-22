@@ -8,12 +8,19 @@ const typeDefs = gql`
         TIGER
     }
 
+    type User {
+        name: String!,
+        email: String!,
+        pets: [Pet]!
+    }
+
     interface Pet {
         id: String!,
         createdAt: String!,
         name: String!,
         type: PetType!,
-        img: String!
+        img: String!,
+        user: User!
     }
 
     input PetInput {
@@ -34,8 +41,9 @@ const typeDefs = gql`
         createdAt: String!,
         name: String!,
         type: PetType!,
-        img: String!
-        dogBone: String!
+        img: String!,
+        dogBone: String!,
+        user: User!
     }
 
     type GenericPet implements Pet {
@@ -43,10 +51,12 @@ const typeDefs = gql`
         createdAt: String!,
         name: String!,
         type: PetType!,
-        img: String!
+        img: String!,
+        user: User!
     }
 
     type Query {
+        me: User!,
         pet: Pet!,
         pets(input: PetInput): [Pet]!
     }

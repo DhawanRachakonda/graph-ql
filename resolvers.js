@@ -1,10 +1,17 @@
+const user = {
+    name: "Dhawan Rachakonda",
+    email: "r.dhawan27@icloud.com",
+    pet: []
+}
+
 const pets = [
     {
         id: "0",
         createdAt: "2020-05-13",
         name: "xyz",
         type: "CAT",
-        img: ""
+        img: "",
+        user: 1
     },
     {
         id: "1",
@@ -12,12 +19,16 @@ const pets = [
         name: "xyz2",
         type: "DOG",
         img: "",
-        dogBone: "south west"
+        dogBone: "south west",
+        user: 1
     }
 ]
 
 const resolvers = {
     Query: {
+        me() {
+            return user;
+        },
         pet() {
             return pets[0]
         },
@@ -37,6 +48,24 @@ const resolvers = {
         __resolveType(pet) {
             if(pet.dogBone) return "Dog"
             return "GenericPet"
+        }
+    },
+
+    User: {
+        pets(user) {
+            return pets;
+        }
+    },
+
+    Dog: {
+        user() {
+            return user
+        }
+    },
+
+    GenericPet: {
+        user() {
+            return user;
         }
     }
 }

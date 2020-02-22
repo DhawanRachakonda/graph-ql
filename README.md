@@ -40,3 +40,40 @@ mutation {
   }
 
 }
+
+#Relationships
+// me
+{
+
+  me {
+    name,
+    pets {
+      name
+    }
+  }
+
+}
+
+// pets
+
+
+{
+
+  pet {
+    user {
+      pets {
+        user {
+          pets {
+            user {
+              pets {
+                user {
+                  email
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
