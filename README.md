@@ -3,9 +3,10 @@ npm start
 
 mutation {
 
-  addPet(pet:{id: "2", createdAt:"54", name: "pet2", type:"xyz3", img: "img"}) {
+  addPet(pet:{id: "2", createdAt:"54", name: "pet2", type:DOG, img: "img"}) {
 
-    name
+    name,
+    type
 
   }
 
@@ -18,6 +19,23 @@ mutation {
   pets(input:{name: "xyz2"}) {
 
     name, type
+
+  }
+
+}
+
+// Get extra attribute for a particular type.
+
+{
+
+  pets(input:{name: "xyz2"}) {
+
+    name,
+    type,
+    __typename,
+    ... on Dog {
+      dogBone
+    }
 
   }
 

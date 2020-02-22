@@ -3,15 +3,16 @@ const pets = [
         id: "0",
         createdAt: "2020-05-13",
         name: "xyz",
-        type: "type1",
+        type: "CAT",
         img: ""
     },
     {
         id: "1",
         createdAt: "2020-05-13",
         name: "xyz2",
-        type: "type2",
-        img: ""
+        type: "DOG",
+        img: "",
+        dogBone: "south west"
     }
 ]
 
@@ -29,6 +30,13 @@ const resolvers = {
     Mutation: {
         addPet(_,{pet}) {
             return pet;
+        }
+    },
+
+    Pet: {
+        __resolveType(pet) {
+            if(pet.dogBone) return "Dog"
+            return "GenericPet"
         }
     }
 }

@@ -1,24 +1,48 @@
 const {gql} = require('apollo-server');
 
 const typeDefs = gql`
-    type Pet {
+
+    enum PetType {
+        DOG
+        CAT
+        TIGER
+    }
+
+    interface Pet {
         id: String!,
         createdAt: String!,
         name: String!,
-        type: String!,
+        type: PetType!,
         img: String!
     }
 
     input PetInput {
         name: String!,
-        type: String
+        type: PetType
     }
 
     input AddPetInput {
         id: String!,
         createdAt: String!,
         name: String!,
-        type: String!,
+        type: PetType!,
+        img: String!
+    }
+
+    type Dog implements Pet {
+        id: String!,
+        createdAt: String!,
+        name: String!,
+        type: PetType!,
+        img: String!
+        dogBone: String!
+    }
+
+    type GenericPet implements Pet {
+        id: String!,
+        createdAt: String!,
+        name: String!,
+        type: PetType!,
         img: String!
     }
 
